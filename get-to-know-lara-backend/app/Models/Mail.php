@@ -18,4 +18,5 @@ class Mail extends Model
         'created',
     ];
 
+
 }
