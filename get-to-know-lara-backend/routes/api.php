@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\AuthController;
 use App\Models\Mail;
 
 /*
@@ -27,10 +28,11 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
 });
 
-    //Route::get('/registration',);
     Route::post('/registration', [RegistrationController::class, 'register']);
 
-    Route::post('/login',[UserController::class,'index']);
+    Route::post('/login', [AuthController::class, 'login']);
+
+    //Route::post('/login',[UserController::class,'index']);
 
     Route::get('/mail/inbox', [MailController::class, 'index']);
     Route::get('/mail/sent', [MailController::class, 'getOutgoingMail']);
