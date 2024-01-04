@@ -13,11 +13,11 @@ class MailController extends Controller
      * Display a listing of incoming mails.
      * !!!! id_user_to === logged-in user's !!!!
      */
-    public function index()
+    public function inbox()
     {
         if(Auth::user()){
-            $mails = Mail::query()->where(['id_user_to' => Auth::user()->id])->get();
-            return $mails;
+            $mails = Mail::query()->where(['id_user_to' => Auth::user()->id])->orderBy('created_at', 'desc')->get();
+            return response()->json($mails);
         }
         throw new \Exception("There is no logged-in user");
 

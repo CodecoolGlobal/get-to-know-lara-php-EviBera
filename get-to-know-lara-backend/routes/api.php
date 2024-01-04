@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
      Route::post('/mail/compose', [MailController::class, 'store']);
-
+     Route::get('/mail/inbox', [MailController::class, 'inbox']);
 });
 
     Route::post('/registration', [RegistrationController::class, 'register']);
@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
     //Route::post('/login',[UserController::class,'index']);
 
-    Route::get('/mail/inbox', [MailController::class, 'index']);
+
     Route::get('/mail/sent', [MailController::class, 'getOutgoingMail']);
 
     Route::get('/mail/view/{id}', [MailController::class, 'show']);
