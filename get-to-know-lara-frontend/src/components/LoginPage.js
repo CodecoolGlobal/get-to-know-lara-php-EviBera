@@ -22,7 +22,7 @@ const LoginForm = () => {
             const data = await response.json();
             if (response.ok) {
                 localStorage.setItem('token', data.token); // Store the token
-                navigate('/');
+                navigate('/mail/inbox');
             } else {
                 navigate('*');
             }
