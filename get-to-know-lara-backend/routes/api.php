@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
-     Route::post('/mail/compose', [MailController::class, 'store']);
+     Route::post('/mail/compose', [MailController::class, 'send']);
      Route::get('/mail/inbox', [MailController::class, 'inbox']);
 });
 

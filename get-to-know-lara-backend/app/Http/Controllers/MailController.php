@@ -35,9 +35,26 @@ class MailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): Mail
+    public function send(Request $request): \Illuminate\Http\JsonResponse
     {
-        return Mail::create($request->all());
+        $request->validate([
+            'id_user_to' => 'required|exists:users,id',
+            'subject' => 'required|string',
+            'message' => 'required|string',
+        ]);
+
+        $mail = new Mail([
+            'id_user_from' => $request->user()->id,
+            'id_user_to' => $request->input('id_user_to'),
+            'subject' => $request->input('subject'),
+            'message' => $request->input('message'),
+            'is_read' => false,
+            'sent' => now(),
+        ]);
+
+        $mail->save();
+
+        return response()->json(['message' => 'Mail sent successfully']);
     }
 
     /**
