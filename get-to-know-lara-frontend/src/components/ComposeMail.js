@@ -16,7 +16,7 @@ const MailCompose = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/mail/send`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/mail/compose`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
