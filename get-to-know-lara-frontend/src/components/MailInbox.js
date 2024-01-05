@@ -22,7 +22,7 @@ const MailInbox = () => {
     }, []);
 
     return (
-        <div>
+        <div className="content">
             <h2>Inbox</h2>
             {mails.map(mail => (
                 <div key={mail.id}>
